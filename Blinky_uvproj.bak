@@ -457,19 +457,19 @@
               <FilePath>.\pins_definition.h</FilePath>
             </File>
             <File>
-              <FileName>pins_configuration.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\pins_configuration.c</FilePath>
-            </File>
-            <File>
-              <FileName>pins_configuration.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\pins_configuration.h</FilePath>
-            </File>
-            <File>
               <FileName>EXTI_pins_info.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\EXTI_pins_info.h</FilePath>
+            </File>
+            <File>
+              <FileName>EXTI_pins_configuration.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\EXTI_pins_configuration.c</FilePath>
+            </File>
+            <File>
+              <FileName>EXTI_pins_configuration.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\EXTI_pins_configuration.h</FilePath>
             </File>
           </Files>
         </Group>
@@ -936,19 +936,19 @@
               <FilePath>.\pins_definition.h</FilePath>
             </File>
             <File>
-              <FileName>pins_configuration.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\pins_configuration.c</FilePath>
-            </File>
-            <File>
-              <FileName>pins_configuration.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\pins_configuration.h</FilePath>
-            </File>
-            <File>
               <FileName>EXTI_pins_info.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\EXTI_pins_info.h</FilePath>
+            </File>
+            <File>
+              <FileName>EXTI_pins_configuration.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\EXTI_pins_configuration.c</FilePath>
+            </File>
+            <File>
+              <FileName>EXTI_pins_configuration.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\EXTI_pins_configuration.h</FilePath>
             </File>
           </Files>
         </Group>

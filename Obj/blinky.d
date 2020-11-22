@@ -14,4 +14,6 @@
 .\Obj\blinky.o: ..\STM32F10x_StdPeriph_Driver\inc\stm32f10x_usart.h
 .\Obj\blinky.o: ..\STM32F10x_StdPeriph_Driver\inc\misc.h
 .\Obj\blinky.o: stm32f10x_it.h
+.\Obj\blinky.o: D:\Programmi\Keil\ARM\RV31\INC\RTL.h
 .\Obj\blinky.o: EXTI_pins_configuration.h
+.\Obj\blinky.o: pins_definition.h
