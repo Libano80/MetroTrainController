@@ -1,0 +1,16 @@
+.\Obj\pins_configuration.o: pins_configuration.c
+.\Obj\pins_configuration.o: stm32f10x_gpio.h
+.\Obj\pins_configuration.o: D:\Programmi\Keil\ARM\Inc\ST\STM32F10x\stm32f10x.h
+.\Obj\pins_configuration.o: D:\Programmi\Keil\ARM\CMSIS\Include\core_cm3.h
+.\Obj\pins_configuration.o: D:\Programmi\Keil\ARM\ARMCC\bin\..\include\stdint.h
+.\Obj\pins_configuration.o: D:\Programmi\Keil\ARM\CMSIS\Include\core_cmInstr.h
+.\Obj\pins_configuration.o: D:\Programmi\Keil\ARM\CMSIS\Include\core_cmFunc.h
+.\Obj\pins_configuration.o: D:\Programmi\Keil\ARM\Inc\ST\STM32F10x\system_stm32f10x.h
+.\Obj\pins_configuration.o: .\stm32f10x_conf.h
+.\Obj\pins_configuration.o: ..\STM32F10x_StdPeriph_Driver\inc\stm32f10x_exti.h
+.\Obj\pins_configuration.o: D:\Programmi\Keil\ARM\Inc\ST\STM32F10x\stm32f10x.h
+.\Obj\pins_configuration.o: .\stm32f10x_gpio.h
+.\Obj\pins_configuration.o: .\stm32f10x_rcc.h
+.\Obj\pins_configuration.o: .\stm32f10x_tim.h
+.\Obj\pins_configuration.o: ..\STM32F10x_StdPeriph_Driver\inc\stm32f10x_usart.h
+.\Obj\pins_configuration.o: ..\STM32F10x_StdPeriph_Driver\inc\misc.h

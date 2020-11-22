@@ -1,0 +1,15 @@
+#define PIN_MAX_BRAKING 2
+#define PIN_MED_BRAKING 3
+#define PIN_MIN_BRAKING 4
+#define PIN_IDLE_LEVER 5
+#define PIN_MIN_ACCEL 6
+#define PIN_MED_ACCEL 7
+#define PIN_MAX_ACCEL 8
+
+#define OUT_MIN_BRAKING 8
+#define OUT_MED_BRAKING 9
+#define OUT_MAX_BRAKING 10
+#define OUT_EMERG_BRAKING 11
+#define OUT_MIN_ACCEL 0
+#define OUT_MED_ACCEL 1
+#define OUT_MAX_ACCEL 2
