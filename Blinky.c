@@ -9,7 +9,7 @@
 #include "stm32f10x_gpio.h"
 #include "stm32f10x_exti.h"
 #include "misc.h"
-#include "pins_configuration.h"
+#include "EXTI_pins_configuration.h"
 int WAIT;
 int IN_INT=0;
 

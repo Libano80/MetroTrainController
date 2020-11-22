@@ -1,4 +1,5 @@
 .\Obj\pins_configuration.o: pins_configuration.c
+.\Obj\pins_configuration.o: EXTI_pins_info.h
 .\Obj\pins_configuration.o: stm32f10x_gpio.h
 .\Obj\pins_configuration.o: D:\Programmi\Keil\ARM\Inc\ST\STM32F10x\stm32f10x.h
 .\Obj\pins_configuration.o: D:\Programmi\Keil\ARM\CMSIS\Include\core_cm3.h
