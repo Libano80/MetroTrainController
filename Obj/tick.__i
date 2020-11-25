@@ -2,4 +2,4 @@
 -I D:\Programmi\Keil\ARM\RV31\INC 
 -I D:\Programmi\Keil\ARM\CMSIS\Include 
 -I D:\Programmi\Keil\ARM\Inc\ST\STM32F10x 
--DSTM32F10X_MD -DUSE_STDPERIPH_DRIVER -o ".\Obj\exti_pins_configuration.o" --omf_browse ".\Obj\exti_pins_configuration.crf" --depend ".\Obj\exti_pins_configuration.d" "EXTI_pins_configuration.c"
+-DSTM32F10X_MD -DUSE_STDPERIPH_DRIVER -o ".\Obj\tick.o" --omf_browse ".\Obj\tick.crf" --depend ".\Obj\tick.d" "tick.c"

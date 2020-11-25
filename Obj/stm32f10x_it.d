@@ -16,3 +16,4 @@
 .\Obj\stm32f10x_it.o: ..\STM32F10x_StdPeriph_Driver\inc\misc.h
 .\Obj\stm32f10x_it.o: D:\Programmi\Keil\ARM\RV31\INC\RTL.h
 .\Obj\stm32f10x_it.o: pins_definition.h
+.\Obj\stm32f10x_it.o: tick.h
