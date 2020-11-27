@@ -17,4 +17,6 @@
 .\Obj\blinky.o: D:\Programmi\Keil\ARM\RV31\INC\RTL.h
 .\Obj\blinky.o: EXTI_pins_configuration.h
 .\Obj\blinky.o: pins_definition.h
+.\Obj\blinky.o: BrakingController.h
+.\Obj\blinky.o: EngineController.h
 .\Obj\blinky.o: tick.h

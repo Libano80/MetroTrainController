@@ -5,13 +5,12 @@
 
 #include <stm32f10x.h>                       /* STM32F103 definitions         */
 #include "stm32f10x_it.h"
-#include "stm32f10x_tim.h"
-#include "stm32f10x_gpio.h"
-#include "stm32f10x_exti.h"
 #include "misc.h"
 #include "RTL.h"
 #include "EXTI_pins_configuration.h"
 #include "pins_definition.h"
+#include "BrakingController.h"
+#include "EngineController.h"
 #include "tick.h"
 
 extern volatile int T1 = 0, IDLE = 1;
@@ -37,36 +36,28 @@ __task void Task1(void) {
 		if(current_Pin != last_Pin) {
 			switch(current_Pin) {
 				case PIN_MAX_BRAKING:
-					GPIOC->ODR	&= ~(OUT_MED_BRAKING);			// Switch off the MED_POWER braking Pin
-					GPIOC->ODR	|= (OUT_MAX_BRAKING);				// Switch on the MAX_POWER braking Pin
+					enableMaxBrakingPower();
 					break;
 				case PIN_MED_BRAKING:
-					GPIOC->ODR	&= ~(OUT_MAX_BRAKING);			// Switch off the MAX_POWER braking Pin
-					GPIOC->ODR	&= ~(OUT_MIN_BRAKING);			// Switch off the MIN_POWER braking Pin
-					GPIOC->ODR	|= (OUT_MED_BRAKING);				// Switch on the MED_POWER braking Pin
+					enableMedBrakingPower();
 					break;
 				case PIN_MIN_BRAKING:
-					GPIOC->ODR	&= ~(OUT_MED_BRAKING);			// Switch off the MED_POWER braking Pin
-					GPIOC->ODR	|= (OUT_MIN_BRAKING);				// Switch on the MIN_POWER braking Pin
+					enableMinBrakingPower();
 					break;
 				case PIN_IDLE_LEVER:
-					GPIOC->ODR	&= ~(OUT_MIN_BRAKING);			// Switch off the MIN_POWER braking Pin
-					GPIOC->ODR	&= ~(OUT_MIN_ACCEL);				// Switch off the MIN_POWER engine Pin
+					disableBraking();
+					disableEngine();
 					break;
 				case PIN_MIN_ACCEL:
-					GPIOC->ODR	&= ~(OUT_MED_ACCEL);				// Switch off the MED_POWER engine Pin
-					GPIOC->ODR	|= (OUT_MIN_ACCEL);					// Switch on the MIN_POWER engine Pin
+					enableMinEnginePower();
 					break;
 				case PIN_MED_ACCEL:
-					GPIOC->ODR	&= ~(OUT_MAX_ACCEL);				// Switch off the MAX_POWER engine Pin
-					GPIOC->ODR	&= ~(OUT_MIN_ACCEL);				// Switch off the MIN_POWER engine Pin
-					GPIOC->ODR	|= (OUT_MED_ACCEL);					// Switch on the MED_POWER engine Pin
+					enableMedEnginePower();
 					ticks_max_accel = -1;										// Reset the number of ticks	
 					//tickReset();														// Reset the number of ticks (avoid oversize faults)
 					break;
 				case PIN_MAX_ACCEL:
-					GPIOC->ODR	&= ~(OUT_MED_ACCEL);				// Switch off the MED_POWER engine Pin
-					GPIOC->ODR	|= (OUT_MAX_ACCEL);					// Switch on the MIN_POWER engine Pin
+					enableMaxEnginePower();
 					ticks_max_accel = tickGet();						// Read the actual number of ticks
 					break;
 			}
@@ -74,10 +65,11 @@ __task void Task1(void) {
 		}
 		
 		if(current_Pin == PIN_MAX_ACCEL & (tickGet() - ticks_max_accel) == 400) {			// If the MAX_ACCEL Pin has been on for 4s (400 * 10ms = 4s)
-			GPIOC->ODR	&= ~(OUT_MAX_ACCEL);																							// Switch off the MAX_POWER engine Pin
-			GPIOC->ODR	|= (OUT_MED_ACCEL);																								// Switch on the MED_POWER engine Pin
+			enableMedEnginePower();																												// Set the engine power to MED_POWER
 			ticks_max_accel = -1;																													// Reset the ticks_max_accel variable
 		}
+		// Eventual check on inconsisten inputs 
+			// Stop the train with power = MED if it is given no input for more than 5s
 	}
 }
 
@@ -99,9 +91,11 @@ __task void TaskInit(void) {
 int main(void) {
 	//unsigned int in_pin = 1<<5;
 	
-	RCC->APB2ENR	|=	RCC_APB2ENR_IOPCEN;			// Enable GPIOC clock
-	GPIOC->CRL		=		0x00000333;							// PC.0..2 defined as Outputs (Signals to Engine)
-	GPIOC->CRH		=		0x00003333;							// PC.8..11 defined as Outputs (Signals to Brakes)
+	//RCC->APB2ENR	|=	RCC_APB2ENR_IOPCEN;			// Enable GPIOC clock
+	//GPIOC->CRL		=		0x00000333;							// PC.0..2 defined as Outputs (Signals to Engine)
+	//GPIOC->CRH		=		0x00003333;							// PC.8..11 defined as Outputs (Signals to Brakes)
+	initBrakingController();
+	initEngineController();
 
 	tickInit();
 	
