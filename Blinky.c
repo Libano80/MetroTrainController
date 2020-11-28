@@ -11,13 +11,14 @@
 #include "pins_definition.h"
 #include "BrakingController.h"
 #include "EngineController.h"
-#include "tick.h"
 
-extern volatile int T1 = 0, IDLE = 1;
+extern volatile int T1 = 0, T2 = 0, IDLE = 1;
 
-volatile int Eid = 0x01;
+//volatile int Eid = 0x01;
+volatile int E2id = 0x02;
 
-OS_TID Tid;         // Task1 (phase manager) id
+OS_TID Tid;         // Task1 (lever_input manager) id
+OS_TID T2id;				// Task2 (stop_signal manager) id
 
 volatile int current_Pin;
 
@@ -27,11 +28,12 @@ __task void Task1(void) {
 
 	unsigned int last_Pin = PIN_IDLE_LEVER;					// Value of the last Pin enabled
 	int ticks_max_accel = -1;
+	int ticks_no_input	= -1;
 	
-	//os_itv_set(10);
+	os_itv_set(1);
 	while(1) {
-		os_evt_wait_or(Eid, 0xFFFF);
-		T1 = 1; IDLE = 0;
+		os_itv_wait();
+		T1 = 1; T2 = 0; IDLE = 0;
 		current_Pin = GPIOB->IDR;											// Update the value of the Pin currently enabled
 		if(current_Pin != last_Pin) {
 			switch(current_Pin) {
@@ -54,28 +56,50 @@ __task void Task1(void) {
 				case PIN_MED_ACCEL:
 					enableMedEnginePower();
 					ticks_max_accel = -1;										// Reset the number of ticks	
-					//tickReset();														// Reset the number of ticks (avoid oversize faults)
 					break;
 				case PIN_MAX_ACCEL:
 					enableMaxEnginePower();
-					ticks_max_accel = tickGet();						// Read the actual number of ticks
+					ticks_max_accel = os_time_get();
 					break;
+				case NO_INPUT:
+					ticks_no_input = os_time_get();
 			}
 			last_Pin = current_Pin;
 		}
 		
-		if(current_Pin == PIN_MAX_ACCEL & (tickGet() - ticks_max_accel) == 400) {			// If the MAX_ACCEL Pin has been on for 4s (400 * 10ms = 4s)
+		if(current_Pin == PIN_MAX_ACCEL & (os_time_get() - ticks_max_accel) == 400) {			// If the MAX_ACCEL Pin has been on for 4s (400 * 10ms = 4s)
 			enableMedEnginePower();																												// Set the engine power to MED_POWER
 			ticks_max_accel = -1;																													// Reset the ticks_max_accel variable
+		} 
+		
+		if(current_Pin == NO_INPUT & (os_time_get() - ticks_no_input) == 500) {
+			disableEngine();
+			enableMedBrakingPower();
+			ticks_no_input = -1;
+			// Eventually, we can consider to invoke the stop signal procedure
 		}
-		// Eventual check on inconsisten inputs 
-			// Stop the train with power = MED if it is given no input for more than 5s
 	}
 }
 
-__task void TaskInit(void) {
-  //T2id = os_tsk_create( Task2, 10 );	
+__task void Task2(void) {
+	//...
+	while(1) {
+		os_evt_wait_or(E2id, 0xFFFF);
+		T1 = 0; T2 = 1; IDLE = 0;
+		disableEngine();									// Disable engine acceleration
+		enableMedBrakingPower();					// Enable MED_POWER braking
+		while(GPIOB->IDR & PIN_STOP_SIGNAL) {
+			// Wait the STOP_SIGNAL Pin to be cleared...
+		}
+		while(!(GPIOB->IDR & PIN_IDLE_LEVER)) {
+			// Wait the IDLE_LEVER Pin to be enabled...
+		}
+	}
+}
+
+__task void TaskInit(void) {	
   Tid = os_tsk_create( Task1, 10 );
+	T2id = os_tsk_create( Task2, 70 );
   //TBid = os_tsk_create( TaskB, 1 );
   //T3id = os_tsk_create( Task3, 80 );
 	//TsimIdm = os_tsk_create( TaskSim, 99 );
@@ -89,30 +113,15 @@ __task void TaskInit(void) {
  *----------------------------------------------------------------------------*/
 
 int main(void) {
-	//unsigned int in_pin = 1<<5;
 	
-	//RCC->APB2ENR	|=	RCC_APB2ENR_IOPCEN;			// Enable GPIOC clock
-	//GPIOC->CRL		=		0x00000333;							// PC.0..2 defined as Outputs (Signals to Engine)
-	//GPIOC->CRH		=		0x00003333;							// PC.8..11 defined as Outputs (Signals to Brakes)
 	initBrakingController();
 	initEngineController();
-
-	tickInit();
 	
-  //Configure_EXTI_GPIOB2();
-	//Configure_EXTI_GPIOB3();
-	//Configure_EXTI_GPIOB4();
-	//Configure_EXTI_GPIOB5();
-	//Configure_EXTI_GPIOB6();
-	//Configure_EXTI_GPIOB7();
-	//Configure_EXTI_GPIOB8();
 	RCC->APB2ENR	|=	RCC_APB2ENR_IOPBEN;
 	GPIOB->CRL		=		0x88888800;
 	GPIOB->CRH		=		0x00000008;
 	
+  Configure_EXTI_GPIOB1();
+	
 	os_sys_init( TaskInit );
-	//while(1){
-	//		wait ();
-	//		IN_INT=0;
-	//}
 }

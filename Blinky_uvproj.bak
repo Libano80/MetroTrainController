@@ -471,6 +471,16 @@
               <FileType>5</FileType>
               <FilePath>.\EXTI_pins_configuration.h</FilePath>
             </File>
+            <File>
+              <FileName>tick.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\tick.c</FilePath>
+            </File>
+            <File>
+              <FileName>tick.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\tick.h</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -959,6 +969,16 @@
               <FileName>EXTI_pins_configuration.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\EXTI_pins_configuration.h</FilePath>
+            </File>
+            <File>
+              <FileName>tick.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\tick.c</FilePath>
+            </File>
+            <File>
+              <FileName>tick.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\tick.h</FilePath>
             </File>
           </Files>
         </Group>
