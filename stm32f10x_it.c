@@ -1,7 +1,5 @@
 #include "stm32f10x_it.h"
 #include "RTL.h"
-#include "pins_definition.h"
-#include "tick.h"
 
 extern int E2id;
 extern OS_TID T2id;

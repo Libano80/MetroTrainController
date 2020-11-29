@@ -481,6 +481,26 @@
               <FileType>5</FileType>
               <FilePath>.\tick.h</FilePath>
             </File>
+            <File>
+              <FileName>BrakingController.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\BrakingController.c</FilePath>
+            </File>
+            <File>
+              <FileName>BrakingController.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\BrakingController.h</FilePath>
+            </File>
+            <File>
+              <FileName>EngineController.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\EngineController.c</FilePath>
+            </File>
+            <File>
+              <FileName>EngineController.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\EngineController.h</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -979,6 +999,26 @@
               <FileName>tick.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\tick.h</FilePath>
+            </File>
+            <File>
+              <FileName>BrakingController.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\BrakingController.c</FilePath>
+            </File>
+            <File>
+              <FileName>BrakingController.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\BrakingController.h</FilePath>
+            </File>
+            <File>
+              <FileName>EngineController.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\EngineController.c</FilePath>
+            </File>
+            <File>
+              <FileName>EngineController.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\EngineController.h</FilePath>
             </File>
           </Files>
         </Group>

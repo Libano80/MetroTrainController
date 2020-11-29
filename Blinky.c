@@ -7,10 +7,11 @@
 #include "stm32f10x_it.h"
 #include "misc.h"
 #include "RTL.h"
-#include "EXTI_pins_configuration.h"
 #include "pins_definition.h"
 #include "BrakingController.h"
 #include "EngineController.h"
+#include "LeverController.h"
+#include "StopSignalController.h"
 
 extern volatile int T1 = 0, T2 = 0, IDLE = 1;
 
@@ -23,16 +24,15 @@ OS_TID T2id;				// Task2 (stop_signal manager) id
 volatile int current_Pin;
 
 __task void Task1(void) {
-	//wake up every 10 ms
-	//react to events
 
 	unsigned int last_Pin = PIN_IDLE_LEVER;					// Value of the last Pin enabled
 	int ticks_max_accel = -1;
 	int ticks_no_input	= -1;
 	
-	os_itv_set(1);
+	os_itv_set(1);																	// Tick set to last 10ms
+	
 	while(1) {
-		os_itv_wait();
+		os_itv_wait();																// Sleep for the duration of a tick
 		T1 = 1; T2 = 0; IDLE = 0;
 		current_Pin = GPIOB->IDR;											// Update the value of the Pin currently enabled
 		if(current_Pin != last_Pin) {
@@ -55,7 +55,7 @@ __task void Task1(void) {
 					break;
 				case PIN_MED_ACCEL:
 					enableMedEnginePower();
-					ticks_max_accel = -1;										// Reset the number of ticks	
+					ticks_max_accel = -1;										// Reset the number of ticks (probably useless)
 					break;
 				case PIN_MAX_ACCEL:
 					enableMaxEnginePower();
@@ -67,12 +67,12 @@ __task void Task1(void) {
 			last_Pin = current_Pin;
 		}
 		
-		if(current_Pin == PIN_MAX_ACCEL & (os_time_get() - ticks_max_accel) == 400) {			// If the MAX_ACCEL Pin has been on for 4s (400 * 10ms = 4s)
+		if(current_Pin == PIN_MAX_ACCEL && (os_time_get() - ticks_max_accel) == 400) {			// If the MAX_ACCEL Pin has been on for 4s (400 * 10ms = 4s)
 			enableMedEnginePower();																												// Set the engine power to MED_POWER
 			ticks_max_accel = -1;																													// Reset the ticks_max_accel variable
 		} 
 		
-		if(current_Pin == NO_INPUT & (os_time_get() - ticks_no_input) == 500) {
+		if(current_Pin == NO_INPUT && (os_time_get() - ticks_no_input) == 500) {
 			disableEngine();
 			enableMedBrakingPower();
 			ticks_no_input = -1;
@@ -82,17 +82,16 @@ __task void Task1(void) {
 }
 
 __task void Task2(void) {
-	//...
 	while(1) {
 		os_evt_wait_or(E2id, 0xFFFF);
 		T1 = 0; T2 = 1; IDLE = 0;
 		disableEngine();									// Disable engine acceleration
 		enableMedBrakingPower();					// Enable MED_POWER braking
-		while(GPIOB->IDR & PIN_STOP_SIGNAL) {
+		while(isStopSignalEnabled()) {
 			// Wait the STOP_SIGNAL Pin to be cleared...
 		}
-		while(!(GPIOB->IDR & PIN_IDLE_LEVER)) {
-			// Wait the IDLE_LEVER Pin to be enabled...
+		while(!isLeverIdle()) {
+			// Wait the LEVER to be set in the IDLE position...
 		}
 	}
 }
@@ -116,12 +115,9 @@ int main(void) {
 	
 	initBrakingController();
 	initEngineController();
+	initLeverController();
 	
-	RCC->APB2ENR	|=	RCC_APB2ENR_IOPBEN;
-	GPIOB->CRL		=		0x88888800;
-	GPIOB->CRH		=		0x00000008;
-	
-  Configure_EXTI_GPIOB1();
+	initStopSignalController();
 	
 	os_sys_init( TaskInit );
 }

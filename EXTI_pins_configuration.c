@@ -12,7 +12,7 @@ void Configure_EXTI_GPIOB(EXTI_pins_info EXTI_pin_info) {
 	GPIO_InitStruct.GPIO_Mode		= 	GPIO_Mode_IPD; 															// GPIO_Mode_INPUT_Pull_Down (does not switch on ODR register by default);
 	GPIO_InitStruct.GPIO_Pin		= 	EXTI_pin_info.GPIO_Pin;
 	GPIO_InitStruct.GPIO_Speed	= 	GPIO_Speed_10MHz;
-	GPIO_Init(GPIOB, &GPIO_InitStruct);																					// THIS PIN CONFIGURATION IS OVERWRITTEN BY THE ONE DEFINED IN THE MAIN PROCEDURE ()
+	GPIO_Init(GPIOB, &GPIO_InitStruct);
 	
 	GPIO_EXTILineConfig(GPIO_PortSourceGPIOB, EXTI_pin_info.GPIO_PinSource);     
 	
@@ -23,11 +23,11 @@ void Configure_EXTI_GPIOB(EXTI_pins_info EXTI_pin_info) {
 	EXTI_Init(&EXTI_InitStruct);																								// Add to EXTI
 
 	/* Add IRQ vector to NVIC */
-	NVIC_InitStruct.NVIC_IRQChannel										= EXTI_pin_info.NVIC_IRQChannel;
-	NVIC_InitStruct.NVIC_IRQChannelPreemptionPriority = 2;											// Set priority
-	NVIC_InitStruct.NVIC_IRQChannelSubPriority				= 0;											// Set sub priority
-	NVIC_InitStruct.NVIC_IRQChannelCmd								= ENABLE;									// Enable interrupt
-	NVIC_Init(&NVIC_InitStruct);																								// Add to NVIC
+	NVIC_InitStruct.NVIC_IRQChannel										= EXTI_pin_info.NVIC_IRQChannel;										// Set channel
+	NVIC_InitStruct.NVIC_IRQChannelPreemptionPriority = EXTI_pin_info.NVIC_IRQChannelPreemptionPriority;	// Set priority
+	NVIC_InitStruct.NVIC_IRQChannelSubPriority				= EXTI_pin_info.NVIC_IRQChannelSubPriority;					// Set sub priority
+	NVIC_InitStruct.NVIC_IRQChannelCmd								= ENABLE;																						// Enable interrupt
+	NVIC_Init(&NVIC_InitStruct);																																					// Add to NVIC
 }
 
 void Configure_EXTI_GPIOB1(void) {
