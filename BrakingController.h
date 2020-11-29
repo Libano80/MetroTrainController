@@ -6,5 +6,6 @@ void enableMaxBrakingPower(void);
 void enableMedBrakingPower(void);
 void enableMinBrakingPower(void);
 void disableBraking(void);
+void enableEmergencyBrakingPower(void);
 
 #endif

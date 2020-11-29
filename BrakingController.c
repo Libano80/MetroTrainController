@@ -28,3 +28,8 @@ void disableBraking(void) {
 	GPIOC->ODR		&= ~(OUT_MED_BRAKING);			// Switch off the MED_POWER braking Pin
 	GPIOC->ODR		&= ~(OUT_MIN_BRAKING);			// Switch off the MIN_POWER braking Pin
 }
+
+void enableEmergencyBrakingPower(void) {
+	disableBraking();													// Disable other braking Pins
+	GPIOC->ODR		|= (OUT_EMERG_BRAKING);			// Switch on the EMERGENCY braking Pin
+}

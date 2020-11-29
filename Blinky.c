@@ -12,14 +12,18 @@
 #include "EngineController.h"
 #include "LeverController.h"
 #include "StopSignalController.h"
+#include "EmergencySignalController.h"
+#include "EXTI_pins_configuration.h"
 
-extern volatile int T1 = 0, T2 = 0, IDLE = 1;
+extern volatile int T1 = 0, T2 = 0, T3 = 0, IDLE = 1;
 
 //volatile int Eid = 0x01;
 volatile int E2id = 0x02;
+volatile int E3id = 0x03;
 
-OS_TID Tid;         // Task1 (lever_input manager) id
-OS_TID T2id;				// Task2 (stop_signal manager) id
+OS_TID Tid;         // Task1 (lever_input manager)				id
+OS_TID T2id;				// Task2 (stop_signal manager) 				id
+OS_TID T3id;				// Task3 (emergency_braking manager)	id
 
 volatile int current_Pin;
 
@@ -33,7 +37,7 @@ __task void Task1(void) {
 	
 	while(1) {
 		os_itv_wait();																// Sleep for the duration of a tick
-		T1 = 1; T2 = 0; IDLE = 0;
+		T1 = 1; T2 = 0; T3 = 0; IDLE = 0;
 		current_Pin = GPIOB->IDR;											// Update the value of the Pin currently enabled
 		if(current_Pin != last_Pin) {
 			switch(current_Pin) {
@@ -84,9 +88,9 @@ __task void Task1(void) {
 __task void Task2(void) {
 	while(1) {
 		os_evt_wait_or(E2id, 0xFFFF);
-		T1 = 0; T2 = 1; IDLE = 0;
-		disableEngine();									// Disable engine acceleration
-		enableMedBrakingPower();					// Enable MED_POWER braking
+		T1 = 0; T2 = 1; T3 = 0; IDLE = 0;
+		disableEngine();														// Disable engine acceleration
+		enableMedBrakingPower();										// Enable MED_POWER braking
 		while(isStopSignalEnabled()) {
 			// Wait the STOP_SIGNAL Pin to be cleared...
 		}
@@ -96,11 +100,23 @@ __task void Task2(void) {
 	}
 }
 
+__task void Task3(void) {
+	while(1) {
+		os_evt_wait_or(E3id, 0xFFFF);
+		T1 = 0; T2 = 0; T3 = 1; IDLE = 0;
+		disableEngine();														// Disable engine acceleration
+		enableEmergencyBrakingPower();							// Enable MED_POWER braking
+		while(1) {
+			// Wait undefinitely (until the system is manually reset)...
+		}
+	}
+}
+
 __task void TaskInit(void) {	
   Tid = os_tsk_create( Task1, 10 );
 	T2id = os_tsk_create( Task2, 70 );
+	T3id = os_tsk_create( Task3, 90 );
   //TBid = os_tsk_create( TaskB, 1 );
-  //T3id = os_tsk_create( Task3, 80 );
 	//TsimIdm = os_tsk_create( TaskSim, 99 );
 
   os_tsk_delete_self();      // kills self
@@ -118,6 +134,7 @@ int main(void) {
 	initLeverController();
 	
 	initStopSignalController();
+	initEmergencySignalController();
 	
 	os_sys_init( TaskInit );
 }

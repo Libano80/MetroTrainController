@@ -30,6 +30,11 @@ void Configure_EXTI_GPIOB(EXTI_pins_info EXTI_pin_info) {
 	NVIC_Init(&NVIC_InitStruct);																																					// Add to NVIC
 }
 
+void Configure_EXTI_GPIOB0(void) {
+	EXTI_pins_info pin_0_EXTI_info = EXTI_pins_info_array[0];
+	Configure_EXTI_GPIOB(pin_0_EXTI_info);
+}
+
 void Configure_EXTI_GPIOB1(void) {
 	EXTI_pins_info pin_1_EXTI_info = EXTI_pins_info_array[1];
 	Configure_EXTI_GPIOB(pin_1_EXTI_info);

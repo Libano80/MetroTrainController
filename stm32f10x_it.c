@@ -1,8 +1,13 @@
 #include "stm32f10x_it.h"
 #include "RTL.h"
 
-extern int E2id;
-extern OS_TID T2id;
+extern int 		E2id, E3id;
+extern OS_TID T2id, T3id;
+
+void EXTI0_IRQHandler(void) {  						// EXTI0_IRQn
+	EXTI_ClearFlag(EXTI_Line0);							// Clear EXTI_Line0 update interrupt
+	isr_evt_set( E3id, T3id );
+}
 
 void EXTI1_IRQHandler(void) {  						// EXTI1_IRQn
 	EXTI_ClearFlag(EXTI_Line1);							// Clear EXTI_Line1 update interrupt

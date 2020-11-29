@@ -123,6 +123,7 @@
 
 extern volatile int T1;
 extern volatile int T2;
+extern volatile int T3;
 extern volatile int IDLE;
 
 __task void os_idle_demon (void) {
@@ -132,6 +133,7 @@ __task void os_idle_demon (void) {
   for (;;) {
     T1 = 0;
 		T2 = 0;
+		T3 = 0;
 		IDLE = 1;
 
   /* HERE: include optional user code to be executed when no task runs.*/

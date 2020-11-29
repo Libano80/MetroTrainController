@@ -11,6 +11,6 @@ typedef struct {
 	} EXTI_pins_info;
 
 EXTI_pins_info EXTI_pins_info_array[2] = {
-				{0, 0, 0, 0, 0, 0},
+				{GPIO_Pin_0, GPIO_PinSource0, EXTI_Line0, EXTI0_IRQn, 0, 0},
 				{GPIO_Pin_1, GPIO_PinSource1, EXTI_Line1, EXTI1_IRQn, 2, 0}
 };
