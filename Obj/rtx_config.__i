@@ -1,5 +1,0 @@
--c --cpu Cortex-M3 -D__RTX -D__MICROLIB -g -O0 --apcs=interwork -I..\STM32F10x_StdPeriph_Driver\inc -I. 
--I D:\Programmi\Keil\ARM\RV31\INC 
--I D:\Programmi\Keil\ARM\CMSIS\Include 
--I D:\Programmi\Keil\ARM\Inc\ST\STM32F10x 
--DSTM32F10X_MD -DUSE_STDPERIPH_DRIVER -o ".\Obj\rtx_config.o" --omf_browse ".\Obj\rtx_config.crf" --depend ".\Obj\rtx_config.d" "RTX_Config.c"

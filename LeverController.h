@@ -2,6 +2,7 @@
 #define _LEVER_CONTROLLER_H_
 
 void initLeverController(void);
+unsigned int getLeverCurrentPosition(void);
 unsigned int isLeverIdle(void);
 
 #endif

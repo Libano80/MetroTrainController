@@ -21,4 +21,3 @@
 .\Obj\blinky.o: LeverController.h
 .\Obj\blinky.o: StopSignalController.h
 .\Obj\blinky.o: EmergencySignalController.h
-.\Obj\blinky.o: EXTI_pins_configuration.h

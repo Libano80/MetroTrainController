@@ -8,6 +8,10 @@ void initLeverController(void) {
 	GPIOB->CRH		=		0x00000008;							// PB.8 defined as Input
 }
 
+unsigned int getLeverCurrentPosition(void) {
+	return GPIOB->IDR;
+}
+
 unsigned int isLeverIdle(void) {
 	return GPIOB->IDR & PIN_IDLE_LEVER;				// Check if the Lever is in IDLE position
 }

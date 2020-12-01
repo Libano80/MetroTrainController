@@ -501,6 +501,26 @@
               <FileType>5</FileType>
               <FilePath>.\LeverController.h</FilePath>
             </File>
+            <File>
+              <FileName>StopSignalController.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\StopSignalController.c</FilePath>
+            </File>
+            <File>
+              <FileName>StopSignalController.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\StopSignalController.h</FilePath>
+            </File>
+            <File>
+              <FileName>EmergencySignalController.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\EmergencySignalController.c</FilePath>
+            </File>
+            <File>
+              <FileName>EmergencySignalController.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\EmergencySignalController.h</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -1019,6 +1039,26 @@
               <FileName>LeverController.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\LeverController.h</FilePath>
+            </File>
+            <File>
+              <FileName>StopSignalController.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\StopSignalController.c</FilePath>
+            </File>
+            <File>
+              <FileName>StopSignalController.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\StopSignalController.h</FilePath>
+            </File>
+            <File>
+              <FileName>EmergencySignalController.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\EmergencySignalController.c</FilePath>
+            </File>
+            <File>
+              <FileName>EmergencySignalController.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\EmergencySignalController.h</FilePath>
             </File>
           </Files>
         </Group>
