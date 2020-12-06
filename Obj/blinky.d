@@ -5,14 +5,15 @@
 .\Obj\blinky.o: D:\Programmi\Keil\ARM\CMSIS\Include\core_cmInstr.h
 .\Obj\blinky.o: D:\Programmi\Keil\ARM\CMSIS\Include\core_cmFunc.h
 .\Obj\blinky.o: D:\Programmi\Keil\ARM\Inc\ST\STM32F10x\system_stm32f10x.h
-.\Obj\blinky.o: .\stm32f10x_conf.h
+.\Obj\blinky.o: D:\Programmi\Keil\ARM\Inc\ST\STM32F10x\stm32f10x_conf.h
 .\Obj\blinky.o: ..\STM32F10x_StdPeriph_Driver\inc\stm32f10x_exti.h
 .\Obj\blinky.o: D:\Programmi\Keil\ARM\Inc\ST\STM32F10x\stm32f10x.h
-.\Obj\blinky.o: .\stm32f10x_gpio.h
-.\Obj\blinky.o: .\stm32f10x_rcc.h
-.\Obj\blinky.o: .\stm32f10x_tim.h
+.\Obj\blinky.o: ..\STM32F10x_StdPeriph_Driver\inc\stm32f10x_gpio.h
+.\Obj\blinky.o: ..\STM32F10x_StdPeriph_Driver\inc\stm32f10x_rcc.h
+.\Obj\blinky.o: ..\STM32F10x_StdPeriph_Driver\inc\stm32f10x_tim.h
 .\Obj\blinky.o: ..\STM32F10x_StdPeriph_Driver\inc\stm32f10x_usart.h
 .\Obj\blinky.o: ..\STM32F10x_StdPeriph_Driver\inc\misc.h
+.\Obj\blinky.o: D:\Programmi\Keil\ARM\ARMCC\bin\..\include\stdio.h
 .\Obj\blinky.o: stm32f10x_it.h
 .\Obj\blinky.o: D:\Programmi\Keil\ARM\RV31\INC\RTL.h
 .\Obj\blinky.o: pins_definition.h
@@ -21,3 +22,5 @@
 .\Obj\blinky.o: LeverController.h
 .\Obj\blinky.o: StopSignalController.h
 .\Obj\blinky.o: EmergencySignalController.h
+.\Obj\blinky.o: CommMessageReceiverController.h
+.\Obj\blinky.o: CommMessageSenderController.h

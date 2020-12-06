@@ -4,6 +4,7 @@
  *----------------------------------------------------------------------------*/
 
 #include <stm32f10x.h>                       /* STM32F103 definitions         */
+#include <stdio.h>
 #include "stm32f10x_it.h"
 #include "misc.h"
 #include "RTL.h"
@@ -13,21 +14,26 @@
 #include "LeverController.h"
 #include "StopSignalController.h"
 #include "EmergencySignalController.h"
+#include "CommMessageReceiverController.h"
+#include "CommMessageSenderController.h"
 
-extern volatile int T1 = 0, T2 = 0, T3 = 0, T4, IDLE = 1;
+extern volatile int T1 = 0, T2 = 0, T3 = 0, T4 = 0, T5 = 0, TSim = 0, IDLE = 1;
 
 volatile int STOP_SIGNAL_EVENT_ID				= 0x02;
-volatile int EMERGENCY_BRAKING_EVENT_ID = 0x03;
-volatile int SYSTEM_LOCK_EVENT_ID				= 0x04;
+volatile int EMERGENCY_BRAKING_EVENT_ID = 0x04;
+volatile int COMM_MESSAGE_EVENT_ID			= 0x08;
 
-OS_TID Tid;         // Task1 (lever_input manager)				id
-OS_TID T2id;				// Task2 (stop_signal manager) 				id
-OS_TID T3id;				// Task3 (emergency_braking manager)	id
-OS_TID T4id;				// Task4 (system_lock)								id
+OS_TID Tid;         // Task1					(lever_input manager)				id
+OS_TID T2id;				// Task2 					(stop_signal manager) 			id
+OS_TID T3id;				// Task3 					(emergency_braking manager)	id
+OS_TID T4id;				// Task4					(comm_messages manager)			id
+//OS_TID TSimid;			// TaskSimulation (test_cases manager)				id
+
+unsigned int current_position;
+char TMC_char_received;
 
 __task void Task1(void) {
 
-	unsigned int current_position;
 	unsigned int last_position = PIN_IDLE_LEVER;				// Value of the last Pin enabled
 	int ticks_max_accel = -1;
 	int ticks_no_input	= -1;
@@ -36,7 +42,8 @@ __task void Task1(void) {
 	
 	while(1) {
 		os_itv_wait();																		// Sleep for the duration of a tick
-		T1 = 1; T2 = 0; T3 = 0; T4 = 0; IDLE = 0;
+		T1 = 1; T2 = 0; T3 = 0; T4 = 0;
+		T5 = 0; TSim = 0; IDLE = 0;
 		current_position = getLeverCurrentPosition();			// Update the value of the Pin currently enabled
 		if(current_position != last_position) {
 			switch(current_position) {
@@ -81,7 +88,9 @@ __task void Task1(void) {
 			ticks_no_input = -1;														// Reset the ticks_no_input variable
 			disableEngine();
 			enableMedEnginePower();
-			os_evt_set(SYSTEM_LOCK_EVENT_ID, T4id);
+			while(1) {
+				// Wait undefinitely until the system is manually reset
+			}
 		}
 	}
 }
@@ -89,7 +98,8 @@ __task void Task1(void) {
 __task void Task2(void) {
 	while(1) {
 		os_evt_wait_or(STOP_SIGNAL_EVENT_ID, 0xFFFF);
-		T1 = 0; T2 = 1; T3 = 0; T4 = 0; IDLE = 0;
+		T1 = 0; T2 = 1; T3 = 0; T4 = 0;
+		T5 = 0; TSim = 0; IDLE = 0;
 		disableEngine();																	// Disable engine acceleration
 		enableMedBrakingPower();													// Enable MED_POWER braking
 		while(isStopSignalEnabled()) {
@@ -104,32 +114,31 @@ __task void Task2(void) {
 __task void Task3(void) {
 	while(1) {
 		os_evt_wait_or(EMERGENCY_BRAKING_EVENT_ID, 0xFFFF);
-		T1 = 0; T2 = 0; T3 = 1; T4 = 0; IDLE = 0;
+		T1 = 0; T2 = 0; T3 = 1; T4 = 0;
+		T5 = 0; TSim = 0; IDLE = 0;
 		disableEngine();																	// Disable engine acceleration
 		enableEmergencyBrakingPower();										// Enable EMERGENCY braking
-		os_evt_set(SYSTEM_LOCK_EVENT_ID, T4id);
+		while(1) {
+			// Wait undefinitely until the system is manually reset
+		}
 	}
 }
 
 __task void Task4(void) {
-	os_evt_wait_or(SYSTEM_LOCK_EVENT_ID, 0xFFFF);
-	T1 = 0; T2 = 0; T3 = 0; T4 = 1; IDLE = 0;
 	while(1) {
-		// Wait undefinitely (until the system is manually reset)...
+		os_evt_wait_or(COMM_MESSAGE_EVENT_ID, 0xFFFF);
+		T1 = 0; T2 = 0; T3 = 0; T4 = 1;
+		T5 = 0; TSim = 0; IDLE = 0;
+		sendData(TMC_char_received);
 	}
 }
 
-__task void TestSimulation(void) {
-	//...
-}
-
 __task void TaskInit(void) {	
-  Tid		= os_tsk_create( Task1, 10 );
-	T2id	= os_tsk_create( Task2, 70 );
-	T3id	= os_tsk_create( Task3, 90 );
-	T4id 	= os_tsk_create( Task4, 95 );
-  //TBid = os_tsk_create( TaskB, 1 );
-	//TsimIdm = os_tsk_create( TaskSim, 99 );
+  Tid			= os_tsk_create( Task1, 10 );
+	T2id		= os_tsk_create( Task2, 70 );
+	T3id		= os_tsk_create( Task3, 90 );
+	T4id		= os_tsk_create( Task4, 5 );
+	//TSimid	= os_tsk_create( TaskSimulation, 99 );
 
   os_tsk_delete_self();      // kills self
 }
@@ -147,6 +156,9 @@ int main(void) {
 	
 	initStopSignalController();
 	initEmergencySignalController();
+	
+	initCommMessageReceiverController();
+	initCommMessageSenderController();
 	
 	os_sys_init( TaskInit );
 }
