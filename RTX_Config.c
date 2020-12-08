@@ -125,7 +125,6 @@ extern volatile int T1;
 extern volatile int T2;
 extern volatile int T3;
 extern volatile int T4;
-extern volatile int T5;
 extern volatile int TSim;
 extern volatile int IDLE;
 
@@ -138,7 +137,6 @@ __task void os_idle_demon (void) {
 		T2		= 0;
 		T3		= 0;
 		T4		= 0;
-		T5		= 0;
 		TSim	= 0;
 		IDLE	= 1;
 

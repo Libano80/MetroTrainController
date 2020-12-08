@@ -2,4 +2,4 @@
 -I D:\Programmi\Keil\ARM\RV31\INC 
 -I D:\Programmi\Keil\ARM\CMSIS\Include 
 -I D:\Programmi\Keil\ARM\Inc\ST\STM32F10x 
--DSTM32F10X_MD -DUSE_STDPERIPH_DRIVER -o ".\Obj\commmessagereceivercontroller.o" --omf_browse ".\Obj\commmessagereceivercontroller.crf" --depend ".\Obj\commmessagereceivercontroller.d" "CommMessageReceiverController.c"
+-DSTM32F10X_MD -DUSE_STDPERIPH_DRIVER -o ".\Obj\levercontroller.o" --omf_browse ".\Obj\levercontroller.crf" --depend ".\Obj\levercontroller.d" "LeverController.c"
