@@ -1,6 +1,11 @@
 #include <stm32f10x.h>                       /* STM32F103 definitions         */
 #include "LeverController.h"
 #include "pins_definition.h"
+#include "TestSimulation.h"
+
+#ifdef TEST_MODE
+extern unsigned int lever_position;
+#endif
 
 void initLeverController(void) {
 	RCC->APB2ENR	|=	RCC_APB2ENR_IOPBEN;			// Enable GPIOB clock
@@ -9,9 +14,17 @@ void initLeverController(void) {
 }
 
 unsigned int getLeverCurrentPosition(void) {
+	#ifdef TEST_MODE
+	return lever_position;
+	#else
 	return GPIOB->IDR;
+	#endif
 }
 
 unsigned int isLeverIdle(void) {
+	#ifdef TEST_MODE
+	return lever_position == PIN_IDLE_LEVER;
+	#else
 	return GPIOB->IDR & PIN_IDLE_LEVER;				// Check if the Lever is in IDLE position
+	#endif
 }

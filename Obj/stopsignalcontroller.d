@@ -16,3 +16,6 @@
 .\Obj\stopsignalcontroller.o: StopSignalController.h
 .\Obj\stopsignalcontroller.o: EXTI_pins_configuration.h
 .\Obj\stopsignalcontroller.o: pins_definition.h
+.\Obj\stopsignalcontroller.o: TestSimulation.h
+.\Obj\stopsignalcontroller.o: pins_definition.h
+.\Obj\stopsignalcontroller.o: TestSimulation.h

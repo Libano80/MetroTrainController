@@ -15,3 +15,6 @@
 .\Obj\brakingcontroller.o: ..\STM32F10x_StdPeriph_Driver\inc\misc.h
 .\Obj\brakingcontroller.o: BrakingController.h
 .\Obj\brakingcontroller.o: pins_definition.h
+.\Obj\brakingcontroller.o: TestSimulation.h
+.\Obj\brakingcontroller.o: pins_definition.h
+.\Obj\brakingcontroller.o: TestSimulation.h

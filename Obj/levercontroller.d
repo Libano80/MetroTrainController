@@ -15,3 +15,6 @@
 .\Obj\levercontroller.o: ..\STM32F10x_StdPeriph_Driver\inc\misc.h
 .\Obj\levercontroller.o: LeverController.h
 .\Obj\levercontroller.o: pins_definition.h
+.\Obj\levercontroller.o: TestSimulation.h
+.\Obj\levercontroller.o: pins_definition.h
+.\Obj\levercontroller.o: TestSimulation.h

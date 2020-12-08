@@ -15,3 +15,6 @@
 .\Obj\enginecontroller.o: ..\STM32F10x_StdPeriph_Driver\inc\misc.h
 .\Obj\enginecontroller.o: EngineController.h
 .\Obj\enginecontroller.o: pins_definition.h
+.\Obj\enginecontroller.o: TestSimulation.h
+.\Obj\enginecontroller.o: pins_definition.h
+.\Obj\enginecontroller.o: TestSimulation.h

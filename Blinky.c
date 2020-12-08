@@ -15,8 +15,8 @@
 #include "EmergencySignalController.h"
 #include "CommMessageReceiverController.h"
 #include "CommMessageSenderController.h"
-
-#define TEST_MODE 888
+#include "TestSimulation.h"
+#include "TestInput.h"
 
 extern volatile int T1 = 0, T2 = 0, T3 = 0, T4 = 0, TSim = 0, IDLE = 1;
 
@@ -35,7 +35,7 @@ char TMC_char_received;
 OS_TID TSimid;			// TaskSimulation (test_cases manager)				id
 unsigned int lever_position;
 unsigned int stop_signal;
-unsigned int emergency_braking_signal;
+Input_Simulation input_simulation_array[10];
 #endif
 
 __task void Task1(void) {
@@ -51,11 +51,7 @@ __task void Task1(void) {
 		os_itv_wait();																		// Sleep for the duration of a tick
 		T1 = 1; T2 = 0; T3 = 0; T4 = 0;
 		TSim = 0; IDLE = 0;
-		#ifdef TEST_MODE
-		current_pos = lever_position;
-		#else
 		current_pos = getLeverCurrentPosition();					// Update the value of the Pin currently enabled
-		#endif
 		if(current_pos != last_pos) {
 			switch(current_pos) {
 				case PIN_MAX_BRAKING:
@@ -98,9 +94,13 @@ __task void Task1(void) {
 		if(current_pos == NO_INPUT && (os_time_get() - ticks_no_input) == 300) {						
 			ticks_no_input = -1;														// Reset the ticks_no_input variable
 			disableEngine();
-			enableMedEnginePower();
+			enableMedBrakingPower();
 			while(1) {
 				// Wait undefinitely until the system is manually reset
+				#ifdef TEST_MODE
+				T1 = 1; T2 = 0; T3 = 0; T4 = 0;
+				TSim = 0; IDLE = 0;
+				#endif
 			}
 		}
 	}
@@ -113,21 +113,20 @@ __task void Task2(void) {
 		TSim = 0; IDLE = 0;
 		disableEngine();																	// Disable engine acceleration
 		enableMedBrakingPower();													// Enable MED_POWER braking
-		#ifdef TEST_MODE
-		while(stop_signal == 1) {
-			// Wait the STOP_SIGNAL to be cleared...
-		}
-		while(lever_position != PIN_IDLE_LEVER) {
-			// Wait the LEVER to be set in the IDLE position...
-		}
-		#else
 		while(isStopSignalEnabled()) {
 			// Wait the STOP_SIGNAL Pin to be cleared...
+			#ifdef TEST_MODE
+			T1 = 0; T2 = 1; T3 = 0; T4 = 0;
+			TSim = 0; IDLE = 0;
+			#endif
 		}
 		while(!isLeverIdle()) {
 			// Wait the LEVER to be set in the IDLE position...
+			#ifdef TEST_MODE
+			T1 = 0; T2 = 1; T3 = 0; T4 = 0;
+			TSim = 0; IDLE = 0;
+			#endif
 		}
-		#endif
 	}
 }
 
@@ -140,6 +139,10 @@ __task void Task3(void) {
 		enableEmergencyBrakingPower();										// Enable EMERGENCY braking
 		while(1) {
 			// Wait undefinitely until the system is manually reset
+			#ifdef TEST_MODE
+			T1 = 0; T2 = 0; T3 = 1; T4 = 0;
+			TSim = 0; IDLE = 0;
+			#endif
 		}
 	}
 }
@@ -161,26 +164,6 @@ __task void TaskSimulation(void) {
 	unsigned int delay;
 	unsigned int i = 0;
 	
-	typedef struct {
-		unsigned int evt;
-		unsigned int task_nr;
-		unsigned int delay;
-	} Input_Simulation;
-	
-	Input_Simulation input_simul_array[10] = {
-		{PIN_IDLE_LEVER, 		1, 50},
-		{PIN_MIN_BRAKING, 	1, 100},
-		{PIN_MED_BRAKING, 	1, 80},
-		{PIN_MIN_BRAKING, 	1, 50},
-		{PIN_IDLE_LEVER, 		1, 50},
-		{PIN_MIN_ACCEL,			1, 50},
-		{1,									2, 50},
-		//{PIN_MED_ACCEL,			1, 50},
-		{0,									2, 50},
-		{PIN_IDLE_LEVER,		1, 50},
-		{PIN_MIN_ACCEL,			1, 50}
-	};
-	
 	os_dly_wait(100);
 	
 	while(1) {
@@ -188,9 +171,9 @@ __task void TaskSimulation(void) {
 		TSim = 1; IDLE = 0;
 		
 		//read element from test_case input
-		evt 			= input_simul_array[i].evt;
-		task_nr	= input_simul_array[i].task_nr;
-		delay 		= input_simul_array[i].delay;
+		evt 			= input_simulation_array[i].evt;
+		task_nr		= input_simulation_array[i].task_nr;
+		delay 		= input_simulation_array[i].delay;
 		i = (i+1)%10;
 		
 		//simulate input
@@ -219,6 +202,7 @@ __task void TaskInit(void) {
 	T2id		= os_tsk_create( Task2, 70 );
 	T3id		= os_tsk_create( Task3, 90 );
 	T4id		= os_tsk_create( Task4, 5 );
+	
 	#ifdef TEST_MODE
 	TSimid	= os_tsk_create( TaskSimulation, 99 );
 	#endif
