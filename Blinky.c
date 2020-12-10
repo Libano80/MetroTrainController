@@ -55,12 +55,15 @@ __task void Task1(void) {
 		if(current_pos != last_pos) {
 			switch(current_pos) {
 				case PIN_MAX_BRAKING:
+					disableEngine();
 					enableMaxBrakingPower();
 					break;
 				case PIN_MED_BRAKING:
+					disableEngine();
 					enableMedBrakingPower();
 					break;
 				case PIN_MIN_BRAKING:
+					disableEngine();
 					enableMinBrakingPower();
 					break;
 				case PIN_IDLE_LEVER:
@@ -68,13 +71,16 @@ __task void Task1(void) {
 					disableEngine();
 					break;
 				case PIN_MIN_ACCEL:
+					disableBraking();
 					enableMinEnginePower();
 					break;
 				case PIN_MED_ACCEL:
+					disableBraking();
 					enableMedEnginePower();
 					ticks_max_accel = -1;												// Reset the number of ticks (probably useless)
 					break;
 				case PIN_MAX_ACCEL:
+					disableBraking();
 					enableMaxEnginePower();
 					ticks_max_accel = os_time_get();
 					break;
@@ -153,15 +159,15 @@ __task void Task4(void) {
 		T1 = 0; T2 = 0; T3 = 0; T4 = 1;
 		TSim = 0; IDLE = 0;
 		sendData(TMC_char_received);
+		T4 = 1;
 	}
 }
 
 #ifdef TEST_MODE
 __task void TaskSimulation(void) {
-	
-	unsigned int evt;
-	unsigned int task_nr;
-	unsigned int delay;
+	unsigned int evt = 0;
+	unsigned int task_nr = 0;
+	unsigned int delay = 0;
 	unsigned int i = 0;
 	
 	os_dly_wait(100);
@@ -185,7 +191,7 @@ __task void TaskSimulation(void) {
 				os_evt_set(STOP_SIGNAL_EVENT_ID, T2id);
 			}
 		} else if(task_nr == 3) {
-			os_evt_set(evt, T3id);
+			os_evt_set(EMERGENCY_BRAKING_EVENT_ID, T3id);
 		} else if(task_nr == 4) {
 			TMC_char_received = evt;
 			os_evt_set(COMM_MESSAGE_EVENT_ID, T4id);

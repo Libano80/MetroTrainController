@@ -527,14 +527,24 @@
               <FilePath>.\stm32f10x_usart.c</FilePath>
             </File>
             <File>
-              <FileName>Serial.c</FileName>
+              <FileName>CommMessageReceiverController.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\Serial.c</FilePath>
+              <FilePath>.\CommMessageReceiverController.c</FilePath>
             </File>
             <File>
-              <FileName>Serial.h</FileName>
+              <FileName>CommMessageReceiverController.h</FileName>
               <FileType>5</FileType>
-              <FilePath>.\Serial.h</FilePath>
+              <FilePath>.\CommMessageReceiverController.h</FilePath>
+            </File>
+            <File>
+              <FileName>CommMessageSenderController.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\CommMessageSenderController.c</FilePath>
+            </File>
+            <File>
+              <FileName>CommMessageSenderController.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\CommMessageSenderController.h</FilePath>
             </File>
           </Files>
         </Group>
@@ -1086,14 +1096,24 @@
               <FilePath>.\stm32f10x_usart.c</FilePath>
             </File>
             <File>
-              <FileName>Serial.c</FileName>
+              <FileName>CommMessageReceiverController.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\Serial.c</FilePath>
+              <FilePath>.\CommMessageReceiverController.c</FilePath>
             </File>
             <File>
-              <FileName>Serial.h</FileName>
+              <FileName>CommMessageReceiverController.h</FileName>
               <FileType>5</FileType>
-              <FilePath>.\Serial.h</FilePath>
+              <FilePath>.\CommMessageReceiverController.h</FilePath>
+            </File>
+            <File>
+              <FileName>CommMessageSenderController.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\CommMessageSenderController.c</FilePath>
+            </File>
+            <File>
+              <FileName>CommMessageSenderController.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\CommMessageSenderController.h</FilePath>
             </File>
           </Files>
         </Group>

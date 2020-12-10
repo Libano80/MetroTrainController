@@ -546,6 +546,16 @@
               <FileType>5</FileType>
               <FilePath>.\CommMessageSenderController.h</FilePath>
             </File>
+            <File>
+              <FileName>TestSimulation.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\TestSimulation.h</FilePath>
+            </File>
+            <File>
+              <FileName>TestInput.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\TestInput.h</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -1114,6 +1124,16 @@
               <FileName>CommMessageSenderController.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\CommMessageSenderController.h</FilePath>
+            </File>
+            <File>
+              <FileName>TestSimulation.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\TestSimulation.h</FilePath>
+            </File>
+            <File>
+              <FileName>TestInput.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\TestInput.h</FilePath>
             </File>
           </Files>
         </Group>

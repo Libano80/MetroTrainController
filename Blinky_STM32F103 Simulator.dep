@@ -33,7 +33,7 @@ I (..\STM32F10x_StdPeriph_Driver\inc\stm32f10x_usart.h)(0x4CBC7F54)
 I (..\STM32F10x_StdPeriph_Driver\inc\misc.h)(0x4CBC7F54)
 I (D:\Programmi\Keil\ARM\RV31\INC\RTL.h)(0x504D874C)
 I (CommMessageReceiverController.h)(0x5FCD3F38)
-F (Blinky.c)(0x5FCFDA1F)(-c --cpu Cortex-M3 -D__RTX -D__MICROLIB -g -O0 --apcs=interwork -I..\STM32F10x_StdPeriph_Driver\inc -I. -I D:\Programmi\Keil\ARM\RV31\INC -I D:\Programmi\Keil\ARM\CMSIS\Include -I D:\Programmi\Keil\ARM\Inc\ST\STM32F10x -DSTM32F10X_MD -DUSE_STDPERIPH_DRIVER -o ".\Obj\blinky.o" --omf_browse ".\Obj\blinky.crf" --depend ".\Obj\blinky.d")
+F (Blinky.c)(0x5FD17031)(-c --cpu Cortex-M3 -D__RTX -D__MICROLIB -g -O0 --apcs=interwork -I..\STM32F10x_StdPeriph_Driver\inc -I. -I D:\Programmi\Keil\ARM\RV31\INC -I D:\Programmi\Keil\ARM\CMSIS\Include -I D:\Programmi\Keil\ARM\Inc\ST\STM32F10x -DSTM32F10X_MD -DUSE_STDPERIPH_DRIVER -o ".\Obj\blinky.o" --omf_browse ".\Obj\blinky.crf" --depend ".\Obj\blinky.d")
 I (D:\Programmi\Keil\ARM\Inc\ST\STM32F10x\stm32f10x.h)(0x4F588B5C)
 I (D:\Programmi\Keil\ARM\CMSIS\Include\core_cm3.h)(0x50066FD2)
 I (D:\Programmi\Keil\ARM\ARMCC\bin\..\include\stdint.h)(0x4EB126E4)
@@ -50,7 +50,7 @@ I (..\STM32F10x_StdPeriph_Driver\inc\misc.h)(0x4CBC7F54)
 I (stm32f10x_it.h)(0x5FB7000A)
 I (D:\Programmi\Keil\ARM\RV31\INC\RTL.h)(0x504D874C)
 I (pins_definition.h)(0x5FCF90DD)
-I (TestSimulation.h)(0x5FCF8949)
+I (TestSimulation.h)(0x5FD174F2)
 I (BrakingController.h)(0x5FC3D2D2)
 I (EngineController.h)(0x5FC106FC)
 I (LeverController.h)(0x5FCE4E07)
@@ -58,7 +58,7 @@ I (StopSignalController.h)(0x5FC3CBED)
 I (EmergencySignalController.h)(0x5FC3D4B3)
 I (CommMessageReceiverController.h)(0x5FCD3F38)
 I (CommMessageSenderController.h)(0x5FCD3F55)
-I (TestInput.h)(0x5FCFD8F6)
+I (TestInput.h)(0x5FD174F2)
 F (..\STM32F10x_StdPeriph_Driver\src\stm32f10x_exti.c)(0x4CBC7F54)(-c --cpu Cortex-M3 -D__RTX -D__MICROLIB -g -O0 --apcs=interwork -I..\STM32F10x_StdPeriph_Driver\inc -I. -I D:\Programmi\Keil\ARM\RV31\INC -I D:\Programmi\Keil\ARM\CMSIS\Include -I D:\Programmi\Keil\ARM\Inc\ST\STM32F10x -DSTM32F10X_MD -DUSE_STDPERIPH_DRIVER -o ".\Obj\stm32f10x_exti.o" --omf_browse ".\Obj\stm32f10x_exti.crf" --depend ".\Obj\stm32f10x_exti.d")
 I (..\STM32F10x_StdPeriph_Driver\inc\stm32f10x_exti.h)(0x4CBC7F54)
 I (D:\Programmi\Keil\ARM\Inc\ST\STM32F10x\stm32f10x.h)(0x4F588B5C)
@@ -148,7 +148,7 @@ I (..\STM32F10x_StdPeriph_Driver\inc\stm32f10x_tim.h)(0x4CBC7F54)
 I (..\STM32F10x_StdPeriph_Driver\inc\stm32f10x_usart.h)(0x4CBC7F54)
 I (..\STM32F10x_StdPeriph_Driver\inc\misc.h)(0x4CBC7F54)
 F (.\EXTI_pins_configuration.h)(0x5FC3D2D2)()
-F (.\BrakingController.c)(0x5FC3D2D2)(-c --cpu Cortex-M3 -D__RTX -D__MICROLIB -g -O0 --apcs=interwork -I..\STM32F10x_StdPeriph_Driver\inc -I. -I D:\Programmi\Keil\ARM\RV31\INC -I D:\Programmi\Keil\ARM\CMSIS\Include -I D:\Programmi\Keil\ARM\Inc\ST\STM32F10x -DSTM32F10X_MD -DUSE_STDPERIPH_DRIVER -o ".\Obj\brakingcontroller.o" --omf_browse ".\Obj\brakingcontroller.crf" --depend ".\Obj\brakingcontroller.d")
+F (.\BrakingController.c)(0x5FD13364)(-c --cpu Cortex-M3 -D__RTX -D__MICROLIB -g -O0 --apcs=interwork -I..\STM32F10x_StdPeriph_Driver\inc -I. -I D:\Programmi\Keil\ARM\RV31\INC -I D:\Programmi\Keil\ARM\CMSIS\Include -I D:\Programmi\Keil\ARM\Inc\ST\STM32F10x -DSTM32F10X_MD -DUSE_STDPERIPH_DRIVER -o ".\Obj\brakingcontroller.o" --omf_browse ".\Obj\brakingcontroller.crf" --depend ".\Obj\brakingcontroller.d")
 I (D:\Programmi\Keil\ARM\Inc\ST\STM32F10x\stm32f10x.h)(0x4F588B5C)
 I (D:\Programmi\Keil\ARM\CMSIS\Include\core_cm3.h)(0x50066FD2)
 I (D:\Programmi\Keil\ARM\ARMCC\bin\..\include\stdint.h)(0x4EB126E4)
@@ -164,9 +164,9 @@ I (..\STM32F10x_StdPeriph_Driver\inc\stm32f10x_usart.h)(0x4CBC7F54)
 I (..\STM32F10x_StdPeriph_Driver\inc\misc.h)(0x4CBC7F54)
 I (BrakingController.h)(0x5FC3D2D2)
 I (pins_definition.h)(0x5FCF90DD)
-I (TestSimulation.h)(0x5FCF8949)
+I (TestSimulation.h)(0x5FD174F2)
 F (.\BrakingController.h)(0x5FC3D2D2)()
-F (.\EngineController.c)(0x5FC106FC)(-c --cpu Cortex-M3 -D__RTX -D__MICROLIB -g -O0 --apcs=interwork -I..\STM32F10x_StdPeriph_Driver\inc -I. -I D:\Programmi\Keil\ARM\RV31\INC -I D:\Programmi\Keil\ARM\CMSIS\Include -I D:\Programmi\Keil\ARM\Inc\ST\STM32F10x -DSTM32F10X_MD -DUSE_STDPERIPH_DRIVER -o ".\Obj\enginecontroller.o" --omf_browse ".\Obj\enginecontroller.crf" --depend ".\Obj\enginecontroller.d")
+F (.\EngineController.c)(0x5FD13364)(-c --cpu Cortex-M3 -D__RTX -D__MICROLIB -g -O0 --apcs=interwork -I..\STM32F10x_StdPeriph_Driver\inc -I. -I D:\Programmi\Keil\ARM\RV31\INC -I D:\Programmi\Keil\ARM\CMSIS\Include -I D:\Programmi\Keil\ARM\Inc\ST\STM32F10x -DSTM32F10X_MD -DUSE_STDPERIPH_DRIVER -o ".\Obj\enginecontroller.o" --omf_browse ".\Obj\enginecontroller.crf" --depend ".\Obj\enginecontroller.d")
 I (D:\Programmi\Keil\ARM\Inc\ST\STM32F10x\stm32f10x.h)(0x4F588B5C)
 I (D:\Programmi\Keil\ARM\CMSIS\Include\core_cm3.h)(0x50066FD2)
 I (D:\Programmi\Keil\ARM\ARMCC\bin\..\include\stdint.h)(0x4EB126E4)
@@ -182,7 +182,7 @@ I (..\STM32F10x_StdPeriph_Driver\inc\stm32f10x_usart.h)(0x4CBC7F54)
 I (..\STM32F10x_StdPeriph_Driver\inc\misc.h)(0x4CBC7F54)
 I (EngineController.h)(0x5FC106FC)
 I (pins_definition.h)(0x5FCF90DD)
-I (TestSimulation.h)(0x5FCF8949)
+I (TestSimulation.h)(0x5FD174F2)
 F (.\EngineController.h)(0x5FC106FC)()
 F (.\LeverController.c)(0x5FCF81FD)(-c --cpu Cortex-M3 -D__RTX -D__MICROLIB -g -O0 --apcs=interwork -I..\STM32F10x_StdPeriph_Driver\inc -I. -I D:\Programmi\Keil\ARM\RV31\INC -I D:\Programmi\Keil\ARM\CMSIS\Include -I D:\Programmi\Keil\ARM\Inc\ST\STM32F10x -DSTM32F10X_MD -DUSE_STDPERIPH_DRIVER -o ".\Obj\levercontroller.o" --omf_browse ".\Obj\levercontroller.crf" --depend ".\Obj\levercontroller.d")
 I (D:\Programmi\Keil\ARM\Inc\ST\STM32F10x\stm32f10x.h)(0x4F588B5C)
@@ -200,7 +200,7 @@ I (..\STM32F10x_StdPeriph_Driver\inc\stm32f10x_usart.h)(0x4CBC7F54)
 I (..\STM32F10x_StdPeriph_Driver\inc\misc.h)(0x4CBC7F54)
 I (LeverController.h)(0x5FCE4E07)
 I (pins_definition.h)(0x5FCF90DD)
-I (TestSimulation.h)(0x5FCF8949)
+I (TestSimulation.h)(0x5FD174F2)
 F (.\LeverController.h)(0x5FCE4E07)()
 F (.\StopSignalController.c)(0x5FCF830A)(-c --cpu Cortex-M3 -D__RTX -D__MICROLIB -g -O0 --apcs=interwork -I..\STM32F10x_StdPeriph_Driver\inc -I. -I D:\Programmi\Keil\ARM\RV31\INC -I D:\Programmi\Keil\ARM\CMSIS\Include -I D:\Programmi\Keil\ARM\Inc\ST\STM32F10x -DSTM32F10X_MD -DUSE_STDPERIPH_DRIVER -o ".\Obj\stopsignalcontroller.o" --omf_browse ".\Obj\stopsignalcontroller.crf" --depend ".\Obj\stopsignalcontroller.d")
 I (D:\Programmi\Keil\ARM\Inc\ST\STM32F10x\stm32f10x.h)(0x4F588B5C)
@@ -219,7 +219,7 @@ I (..\STM32F10x_StdPeriph_Driver\inc\misc.h)(0x4CBC7F54)
 I (StopSignalController.h)(0x5FC3CBED)
 I (EXTI_pins_configuration.h)(0x5FC3D2D2)
 I (pins_definition.h)(0x5FCF90DD)
-I (TestSimulation.h)(0x5FCF8949)
+I (TestSimulation.h)(0x5FD174F2)
 F (.\StopSignalController.h)(0x5FC3CBED)()
 F (.\EmergencySignalController.c)(0x5FC3D4B3)(-c --cpu Cortex-M3 -D__RTX -D__MICROLIB -g -O0 --apcs=interwork -I..\STM32F10x_StdPeriph_Driver\inc -I. -I D:\Programmi\Keil\ARM\RV31\INC -I D:\Programmi\Keil\ARM\CMSIS\Include -I D:\Programmi\Keil\ARM\Inc\ST\STM32F10x -DSTM32F10X_MD -DUSE_STDPERIPH_DRIVER -o ".\Obj\emergencysignalcontroller.o" --omf_browse ".\Obj\emergencysignalcontroller.crf" --depend ".\Obj\emergencysignalcontroller.d")
 I (D:\Programmi\Keil\ARM\Inc\ST\STM32F10x\stm32f10x.h)(0x4F588B5C)
@@ -285,8 +285,8 @@ I (..\STM32F10x_StdPeriph_Driver\inc\stm32f10x_usart.h)(0x4CBC7F54)
 I (..\STM32F10x_StdPeriph_Driver\inc\misc.h)(0x4CBC7F54)
 I (CommMessageSenderController.h)(0x5FCD3F55)
 F (.\CommMessageSenderController.h)(0x5FCD3F55)()
-F (.\TestSimulation.h)(0x5FCF8949)()
-F (.\TestInput.h)(0x5FCFD8F6)()
+F (.\TestSimulation.h)(0x5FD174F2)()
+F (.\TestInput.h)(0x5FD174F2)()
 F (Abstract.txt)(0x51C74546)()
 F (.\RTX_Config.c)(0x5FCD4D69)(-c --cpu Cortex-M3 -D__RTX -D__MICROLIB -g -O0 --apcs=interwork -I..\STM32F10x_StdPeriph_Driver\inc -I. -I D:\Programmi\Keil\ARM\RV31\INC -I D:\Programmi\Keil\ARM\CMSIS\Include -I D:\Programmi\Keil\ARM\Inc\ST\STM32F10x -DSTM32F10X_MD -DUSE_STDPERIPH_DRIVER -o ".\Obj\rtx_config.o" --omf_browse ".\Obj\rtx_config.crf" --depend ".\Obj\rtx_config.d")
 I (D:\Programmi\Keil\ARM\RV31\INC\RTL.h)(0x504D874C)

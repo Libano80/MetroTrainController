@@ -3,6 +3,6 @@
 
 #include "pins_definition.h"
 
-#define TEST_MODE 888
+//#define TEST_MODE 888
 
 #endif
