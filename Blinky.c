@@ -1,6 +1,6 @@
 /*----------------------------------------------------------------------------
- * Name:    BlinkySingleLED_commanded_IE.c
- * Purpose: Turn on/off LED depending on input, managed via interrupt
+ * Name:    Blinky.c
+ * Purpose: Definition of the tasks to control the Metro Train 
  *----------------------------------------------------------------------------*/
 
 #include <stm32f10x.h>                       /* STM32F103 definitions         */
@@ -91,18 +91,18 @@ __task void Task1(void) {
 		}
 		
 		// If the MAX_ACCEL Pin has been on for 4s (400 * 10ms = 4s)
-		if(current_pos == PIN_MAX_ACCEL && (os_time_get() - ticks_max_accel) == 400) {		
+		if(current_pos == PIN_MAX_ACCEL && (os_time_get() - ticks_max_accel) >= 400) {		
 			ticks_max_accel = -1;														// Reset the ticks_max_accel variable			
 			enableMedEnginePower();													// Set the engine power to MED_POWER
 		} 
 		
 		// If no input is received for more than 3s (300 * 10ms = 3s)
-		if(current_pos == NO_INPUT && (os_time_get() - ticks_no_input) == 300) {						
+		if(current_pos == NO_INPUT && (os_time_get() - ticks_no_input) >= 300) {						
 			ticks_no_input = -1;														// Reset the ticks_no_input variable
 			disableEngine();
 			enableMedBrakingPower();
 			while(1) {
-				// Wait undefinitely until the system is manually reset
+				// Wait undefinitely until the system is manually reset...
 				#ifdef TEST_MODE
 				T1 = 1; T2 = 0; T3 = 0; T4 = 0;
 				TSim = 0; IDLE = 0;
@@ -144,7 +144,7 @@ __task void Task3(void) {
 		disableEngine();																	// Disable engine acceleration
 		enableEmergencyBrakingPower();										// Enable EMERGENCY braking
 		while(1) {
-			// Wait undefinitely until the system is manually reset
+			// Wait undefinitely until the system is manually reset...
 			#ifdef TEST_MODE
 			T1 = 0; T2 = 0; T3 = 1; T4 = 0;
 			TSim = 0; IDLE = 0;
@@ -176,13 +176,13 @@ __task void TaskSimulation(void) {
 		T1 = 0; T2 = 0; T3 = 0; T4 = 0;
 		TSim = 1; IDLE = 0;
 		
-		//read element from test_case input
+		// Read element from test_case input
 		evt 			= input_simulation_array[i].evt;
 		task_nr		= input_simulation_array[i].task_nr;
 		delay 		= input_simulation_array[i].delay;
 		i = (i+1)%10;
 		
-		//simulate input
+		// Simulate input
 		if(task_nr == 1) {
 			lever_position = evt;
 		} else if(task_nr == 2) {
@@ -197,7 +197,7 @@ __task void TaskSimulation(void) {
 			os_evt_set(COMM_MESSAGE_EVENT_ID, T4id);
 		}
 		
-		//sleep for a given amount of time
+		// Sleep for a given amount of time
 		os_dly_wait(delay);
 	}
 }

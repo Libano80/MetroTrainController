@@ -1,3 +1,8 @@
+/*----------------------------------------------------------------------------
+ * Name:    CommMessageSenderController.c
+ * Purpose: Definition of the communication specifics with the Driver Display
+ *----------------------------------------------------------------------------*/
+
 #include <stm32f10x.h>                     /* STM32F103 definitions         	*/
 #include "CommMessageSenderController.h"
 #include "stm32f10x_usart.h"
@@ -6,7 +11,7 @@ void initCommMessageSenderController(void) {
 	USART_InitTypeDef USART_InitStructure;
   GPIO_InitTypeDef GPIO_InitStructure;
 
-  /* Enable GPIO and USART2 clock */
+  /* Enable GPIOA and USART2 clock */
   RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOA, ENABLE);
   RCC_APB1PeriphClockCmd(RCC_APB1Periph_USART2, ENABLE);
 
@@ -21,8 +26,8 @@ void initCommMessageSenderController(void) {
   GPIO_InitStructure.GPIO_Pin = GPIO_Pin_3;
   GPIO_Init(GPIOA, &GPIO_InitStructure);
 
-  /* USARTx configured as follow:
-        - BaudRate = 9600 baud
+  /* USART2 configured as follow:
+        - BaudRate = 115200 baud
         - Word Length = 8 Bits
         - One Stop Bit
         - No parity
@@ -36,13 +41,13 @@ void initCommMessageSenderController(void) {
   USART_InitStructure.USART_HardwareFlowControl = USART_HardwareFlowControl_None;
   USART_InitStructure.USART_Mode = USART_Mode_Rx | USART_Mode_Tx;
 
-  /* USART configuration */
+  /* USART initialization */
   USART_Init(USART2, &USART_InitStructure);
 
 	USART_Cmd(USART2, ENABLE);  
 }
 
 void sendData(char c) {
-	while(USART_GetFlagStatus(USART2, USART_FLAG_TC) == RESET); 			//waiting for the last send end
+	while(USART_GetFlagStatus(USART2, USART_FLAG_TC) == RESET); 			// Waiting for the last char to be sent
 	USART_SendData(USART2, c);
 }

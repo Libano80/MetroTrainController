@@ -1,3 +1,9 @@
+/*----------------------------------------------------------------------------
+ * Name:    StopSignalController.c
+ * Purpose: Definition of the communication specifics with the Stop Signal 
+ * 					button
+ *----------------------------------------------------------------------------*/
+
 #include <stm32f10x.h>                       /* STM32F103 definitions         */
 #include "StopSignalController.h"
 #include "EXTI_pins_configuration.h"

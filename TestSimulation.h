@@ -1,5 +1,5 @@
-#ifndef TEST_SIMULATION_H
-#define TEST_SIMULATION_H
+#ifndef _TEST_SIMULATION_H
+#define _TEST_SIMULATION_H
 
 #include "pins_definition.h"
 

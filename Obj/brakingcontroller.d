@@ -17,4 +17,3 @@
 .\Obj\brakingcontroller.o: pins_definition.h
 .\Obj\brakingcontroller.o: TestSimulation.h
 .\Obj\brakingcontroller.o: pins_definition.h
-.\Obj\brakingcontroller.o: TestSimulation.h

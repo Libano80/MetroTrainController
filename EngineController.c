@@ -1,3 +1,8 @@
+/*----------------------------------------------------------------------------
+ * Name:    EngineController.c
+ * Purpose: Definition of the communication specifics with the Engine
+ *----------------------------------------------------------------------------*/
+
 #include <stm32f10x.h>                       /* STM32F103 definitions         */
 #include "EngineController.h"
 #include "pins_definition.h"

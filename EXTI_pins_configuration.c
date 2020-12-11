@@ -1,3 +1,8 @@
+/*----------------------------------------------------------------------------
+ * Name:    EXTI_pins_configuration.c
+ * Purpose: Configuration of the EXTI lines 
+ *----------------------------------------------------------------------------*/
+
 #include "EXTI_pins_info.h"
 
 void Configure_EXTI_GPIOB(EXTI_pins_info EXTI_pin_info) {

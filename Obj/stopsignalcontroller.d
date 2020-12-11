@@ -18,4 +18,3 @@
 .\Obj\stopsignalcontroller.o: pins_definition.h
 .\Obj\stopsignalcontroller.o: TestSimulation.h
 .\Obj\stopsignalcontroller.o: pins_definition.h
-.\Obj\stopsignalcontroller.o: TestSimulation.h

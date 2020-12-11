@@ -1,5 +1,5 @@
-#ifndef TEST_INPUT_H
-#define TEST_INPUT_H
+#ifndef _TEST_INPUT_H
+#define _TEST_INPUT_H
 
 #include "TestSimulation.h"
 #include "pins_definition.h"
@@ -95,4 +95,4 @@ extern Input_Simulation input_simulation_array[10] = {
 
 #endif		//	#ifdef TEST_MODE
 
-#endif		//	#ifndef TEST_INPUT_H
+#endif		//	#ifndef _TEST_INPUT_H

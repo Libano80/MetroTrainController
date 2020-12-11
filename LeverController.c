@@ -1,3 +1,8 @@
+/*----------------------------------------------------------------------------
+ * Name:    LeverController.c
+ * Purpose: Definition of the communication specifics with the Driver Lever
+ *----------------------------------------------------------------------------*/
+
 #include <stm32f10x.h>                       /* STM32F103 definitions         */
 #include "LeverController.h"
 #include "pins_definition.h"

@@ -1,3 +1,6 @@
+#ifndef _PINS_DEFINITION_H
+#define _PINS_DEFINITION_H
+
 #include "TestSimulation.h"
 
 #define PIN_EMERGENCY_BRAKING			1
@@ -23,4 +26,6 @@
 #define STOP_SIGNAL_ENABLED				1
 #define STOP_SIGNAL_DISABLED			0
 #define EMERGENCY_SIGNAL_ENABLED	1
+#endif
+
 #endif

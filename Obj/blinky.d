@@ -18,7 +18,6 @@
 .\Obj\blinky.o: pins_definition.h
 .\Obj\blinky.o: TestSimulation.h
 .\Obj\blinky.o: pins_definition.h
-.\Obj\blinky.o: TestSimulation.h
 .\Obj\blinky.o: BrakingController.h
 .\Obj\blinky.o: EngineController.h
 .\Obj\blinky.o: LeverController.h
@@ -27,4 +26,3 @@
 .\Obj\blinky.o: CommMessageReceiverController.h
 .\Obj\blinky.o: CommMessageSenderController.h
 .\Obj\blinky.o: TestInput.h
-.\Obj\blinky.o: pins_definition.h

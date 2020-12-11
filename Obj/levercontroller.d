@@ -17,4 +17,3 @@
 .\Obj\levercontroller.o: pins_definition.h
 .\Obj\levercontroller.o: TestSimulation.h
 .\Obj\levercontroller.o: pins_definition.h
-.\Obj\levercontroller.o: TestSimulation.h
