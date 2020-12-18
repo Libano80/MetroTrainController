@@ -6,7 +6,6 @@
 
 #include <stm32f10x.h>                     /* STM32F103 definitions         	*/
 #include "CommMessageReceiverController.h"
-#include "stm32f10x_usart.h"
 
 void USART1_Init(void) {
 	GPIO_InitTypeDef GPIO_InitStructure;

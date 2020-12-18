@@ -4,8 +4,9 @@
 #define __STM32F10x_IT_H
 
 #include "stm32f10x.h"
-void TIM2_IRQHandler(void);
-void EXTI15_10_IRQHandler(void);
+void EXTI0_IRQHandler(void);
+void EXTI1_IRQHandler(void);
+void USART1_IRQHandler(void);
 #endif
 
 

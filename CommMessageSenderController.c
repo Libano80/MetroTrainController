@@ -5,7 +5,6 @@
 
 #include <stm32f10x.h>                     /* STM32F103 definitions         	*/
 #include "CommMessageSenderController.h"
-#include "stm32f10x_usart.h"
 
 void initCommMessageSenderController(void) {
 	USART_InitTypeDef USART_InitStructure;
