@@ -8,11 +8,14 @@ The MetroTrainController project is a program for the ST 'STM32F103RB' microcont
 using Keil 'MCBSTM32' Evaluation Board.
 Compliant to Cortex Microcontroller Software Interface Standard (CMSIS V2.0).
 
+The details concerning the specification, design and testing phases can be found in the 
+'Report Project.pdf' file.
+
 Example functionality:
  - Clock Settings:
    - XTAL    =            8.00 MHz
    - SYSCLK  =           72.00 MHz
-
+   
 The program is available in different targets:
 
   STM32F103 Simulator:  configured for software Simulator
