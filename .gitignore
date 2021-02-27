@@ -29,8 +29,8 @@
 *.bak
 
 # Generated output files
-/Lst/*
-/Obj/*
+/src/Lst/*
+/src/Obj/*
 
 # External Libraries
 /STM32F10x_StdPeriph_Driver/*
