@@ -28,15 +28,13 @@ In order to run the software using the STM32F103 Simulator, the project environm
 Specifically, you need to:
  - Download the STM32F10x_StdPeriph_Lib library 
 	Version used during the development phase: V3.4.0
- - Place the content of the folder Libraries (CMSIS, STM32F10x_StdPeriph_Driver) at the same depth
-	of the project directory.
+ - Place the content of the folder Libraries (STM32F10x_StdPeriph_Driver) at the same depth
+	of the 'src' project directory.
 	 - E.g.
 	 
-	 	/metrotraincontroller
+	 	/metrotraincontroller/src
 		
-	 	/CMSIS
-		
-	 	/STM32F10x_StdPeriph_Driver
+	 	/metrotraincontroller/STM32F10x_StdPeriph_Driver
 	 	
 		..
 

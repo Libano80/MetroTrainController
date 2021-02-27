@@ -16,6 +16,7 @@
 *.sbr
 
 # User-specific uVision files
+*.uvproj
 *.opt
 *.uvopt
 *.uvoptx
@@ -30,3 +31,6 @@
 # Generated output files
 /Lst/*
 /Obj/*
+
+# External Libraries
+/STM32F10x_StdPeriph_Driver/*
